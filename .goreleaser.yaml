@@ -1,0 +1,41 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    main: .
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+
+brews:
+  - name: brew-go-demo
+    repository:
+      owner: jasony87
+      name: homebrew-tools   # create this repo at github.com/jasony87/homebrew-tools
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+    homepage: https://github.com/jasony87/brew-go-demo
+    description: "A minimal Go CLI for testing GoReleaser and Homebrew tap distribution."
+    license: MIT
