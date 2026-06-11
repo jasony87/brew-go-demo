@@ -16,7 +16,8 @@ builds:
     main: .
 
 archives:
-  - format: tar.gz
+  - formats:
+      - tar.gz
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
 
 checksum:
@@ -30,7 +31,7 @@ changelog:
       - "^test:"
       - "^chore:"
 
-brews:
+homebrew:
   - name: brew-go-demo
     repository:
       owner: jasony87
