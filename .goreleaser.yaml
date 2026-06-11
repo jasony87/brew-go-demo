@@ -31,7 +31,7 @@ changelog:
       - "^test:"
       - "^chore:"
 
-homebrew:
+brews:
   - name: brew-go-demo
     repository:
       owner: jasony87
